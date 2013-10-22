@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <input id="input" type="text"><button id="send">send</button>
+    </body>
+    <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
+    <script>
+        var ws = new WebSocket("ws://localhost:8080/goorder");
+        var input = $('#input'), send = $('#send');
+        var content = {_id:1};
+        ws.onmessage = function(event) {
+            content = JSON.parse(event.data);
+            console.log(content);
+            input.val(content.text);
+        };
+        input.change(function() {
+            content.text = input.val();
+            ws.send(JSON.stringify(content));
+        });
+    </script>
+</html>

@@ -1,0 +1,16 @@
+{
+    "mongo": {
+        "moduleName": "io.vertx~mod-mongo-persistor~2.0.0-beta1",
+        "host": "localhost",
+        "port": 27017,
+        "db_name": "goorder"
+    },
+    "http": {
+        "port": 8080,
+        "path": "/goorder"
+    },
+    "sockJS": {
+        "prefix": "/sockjs"
+    }
+    
+}

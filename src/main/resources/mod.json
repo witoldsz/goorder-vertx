@@ -1,0 +1,10 @@
+{
+  "main":"net.goorder.vertx.LauncherVerticle",
+
+  "description":"Put description of your module here",
+  "licenses": ["The Apache Software License Version 2.0"],
+  "author": "net.goorder",
+
+  "developers": ["Witold Szczerba", "Łukasz Stachowiak"],
+  "homepage": "http://goorder.net"
+}

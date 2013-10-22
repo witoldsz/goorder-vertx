@@ -23,6 +23,17 @@ public class LauncherVerticle extends Verticle {
         vertx.createHttpServer().websocketHandler(socket -> {
             log.info("socket handler path = " + socket.path());
             if (socket.path().equals(config.getHttpPath())) {
+
+                //initial load
+                eb.send(config.getMongoAddress(), new JsonObject()
+                        .putString("collection", "test")
+                        .putString("action", "findone")
+                        .putObject("matcher", new JsonObject().putValue("_id", 1)),
+                        (Message<JsonObject> event) -> {
+                    eb.publish("goorder.message", event.body().getObject("result"));
+                });
+
+                //register + unregister peers
                 Handler<Message> messageHandler = event -> {
                     socket.writeTextFrame(event.body().toString());
                 };
@@ -30,6 +41,8 @@ public class LauncherVerticle extends Verticle {
                 socket.closeHandler(v -> {
                     eb.unregisterHandler("goorder.message", messageHandler);
                 });
+
+                //incoming data
                 socket.dataHandler(buffer -> {
                     log.info("socket data = " + buffer);
                     JsonObject data = new JsonObject(buffer.toString());
@@ -43,7 +56,7 @@ public class LauncherVerticle extends Verticle {
                 });
             }
         }).requestHandler(request -> {
-            if (request.path().equals("/index.html")) request.response().sendFile("docroot/index.html");
+            if (request.path().equals("/")) request.response().sendFile("docroot/index.html");
         }).listen(config.getHttpPort());
 
         container.deployModule(config.getMongoModuleName(), config.getMongo());

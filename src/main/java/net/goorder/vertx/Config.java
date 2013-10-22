@@ -7,13 +7,16 @@ import org.vertx.java.core.json.JsonObject;
  *
  * @author witoldsz
  */
-@Data
 public class Config {
     
     private static final String MONGO_ADDR = "goorder.mongo";
     
     private final JsonObject config;
-    
+
+    public Config(JsonObject config) {
+        this.config = config;
+    }
+
     public String getMongoModuleName() {
         return config.getObject("mongo").getString("moduleName");
     }

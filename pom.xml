@@ -11,9 +11,9 @@
   <url>http://maven.apache.org</url>
 
   <parent>
-     <groupId>org.sonatype.oss</groupId>
-     <artifactId>oss-parent</artifactId>
-     <version>7</version>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
   </parent>
 
   <properties>
@@ -65,8 +65,8 @@
       <version>${vertx.version}</version>
       <scope>provided</scope>
     </dependency>
-    
-    
+
+
     <!--Test dependencies-->
     <dependency>
       <groupId>junit</groupId>
@@ -80,7 +80,7 @@
       <version>${vertx.testtools.version}</version>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>com.jetdrone</groupId>
       <artifactId>yoke</artifactId>
@@ -91,7 +91,7 @@
       <artifactId>yoke-extras</artifactId>
       <version>1.0.1</version>
     </dependency>
-<!--    <dependency>
+    <!--    <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>mod-mongo-persistor</artifactId>
       <version>2.0.0-final</version>
@@ -115,9 +115,9 @@
         <artifactId>vertx-maven-plugin</artifactId>
         <version>${maven.vertx.plugin.version}</version>
         <configuration>
-           <configFile>config.json</configFile>
-           <instances>1</instances>
-           <classpath>src/main/resources/:src/test/resources/:target/classes/:target/test-classes/</classpath>
+          <configFile>config.json</configFile>
+          <instances>1</instances>
+          <classpath>src/main/resources/:src/test/resources/:target/classes/:target/test-classes/</classpath>
         </configuration>
         <executions>
           <execution>

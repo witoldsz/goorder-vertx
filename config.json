@@ -1,6 +1,6 @@
 {
     "mongo": {
-        "moduleName": "io.vertx~mod-mongo-persistor~2.0.0-beta1",
+        "moduleName": "io.vertx~mod-mongo-persistor~2.1.0",
         "host": "localhost",
         "port": 27017,
         "db_name": "goorder"
@@ -12,5 +12,5 @@
     "sockJS": {
         "prefix": "/sockjs"
     }
-    
+
 }

@@ -27,21 +27,6 @@
     <!--Vertx module name-->
     <module.name>${project.groupId}~${project.artifactId}~${project.version}</module.name>
 
-    <!--Dependency versions-->
-    <vertx.version>2.0.0-final</vertx.version>
-    <vertx.testtools.version>2.0.0-final</vertx.testtools.version>
-    <junit.version>4.11</junit.version>
-
-    <!--Plugin versions-->
-    <maven.compiler.plugin.version>3.0</maven.compiler.plugin.version>
-    <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
-    <maven.clean.plugin.version>2.5</maven.clean.plugin.version>
-    <maven.vertx.plugin.version>2.0.0-final</maven.vertx.plugin.version>
-    <maven.surefire.plugin.version>2.14</maven.surefire.plugin.version>
-    <maven.failsafe.plugin.version>2.14</maven.failsafe.plugin.version>
-    <maven.surefire.report.plugin.version>2.14</maven.surefire.report.plugin.version>
-    <maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
-    <maven.dependency.plugin.version>2.7</maven.dependency.plugin.version>
   </properties>
 
   <repositories>
@@ -56,13 +41,13 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
-      <version>${vertx.version}</version>
+      <version>2.0.2-final</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-platform</artifactId>
-      <version>${vertx.version}</version>
+      <version>2.0.2-final</version>
       <scope>provided</scope>
     </dependency>
 
@@ -77,7 +62,7 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>testtools</artifactId>
-      <version>${vertx.testtools.version}</version>
+      <version>2.0.2-final</version>
       <scope>test</scope>
     </dependency>
 
@@ -113,7 +98,7 @@
       <plugin>
         <groupId>io.vertx</groupId>
         <artifactId>vertx-maven-plugin</artifactId>
-        <version>${maven.vertx.plugin.version}</version>
+        <version>2.0.1-final</version>
         <configuration>
           <configFile>config.json</configFile>
           <instances>1</instances>
@@ -134,56 +119,16 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven.compiler.plugin.version}</version>
+        <version>3.1</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>${maven.resources.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>copy-mod-to-target</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <overwrite>true</overwrite>
-              <outputDirectory>target/mods/${module.name}</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>target/classes</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>${maven.dependency.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>copy-mod-dependencies-to-target</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>target/mods/${module.name}/lib</outputDirectory>
-              <includeScope>runtime</includeScope>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven.surefire.plugin.version}</version>
+        <version>2.16</version>
         <configuration>
           <includes>
             <include>**/unit/*Test*.java</include>
@@ -193,7 +138,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>${maven.failsafe.plugin.version}</version>
+        <version>2.16</version>
         <configuration>
           <systemProperties>
             <property>
@@ -217,7 +162,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>${maven.surefire.report.plugin.version}</version>
+        <version>2.16</version>
         <executions>
           <execution>
             <id>generate-test-report</id>
@@ -238,6 +183,8 @@
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
+          <finalName>${module.name}</finalName>
+          <outputDirectory>${project.build.directory}/mods</outputDirectory>
           <descriptors>
             <descriptor>src/main/assembly/mod.xml</descriptor>
           </descriptors>
@@ -264,7 +211,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven.javadoc.plugin.version}</version>
+        <version>2.9.1</version>
         <configuration>
           <aggregate>true</aggregate>
         </configuration>
